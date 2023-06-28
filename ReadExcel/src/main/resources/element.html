@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+  <el-table
+    :show-header="false"
+    :data="tableDataBill"
+    border
+    style="width: 100%;"
+  >
+    <el-table-column prop="total" align="center" ></el-table-column>
+    <el-table-column prop="totalOrder" ></el-table-column>
+    <el-table-column prop="totalArea"  ></el-table-column>
+    <el-table-column prop="sendAmount"  ></el-table-column>
+    <el-table-column prop="totalAmount"  ></el-table-column>
+  </el-table>
+
+  <el-table
+    :data="dataNumberList"
+    border>
+    <el-table-column
+      :prop="item.state"
+      :label="item.name" v-for="(item,index) in dataNameList" :key="index" align="center">
+    </el-table-column>
+  </el-table>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        dataNameList:[],
+        dataNumberList:[],
+        DataBefore: [],
+        tableDataBill:[{
+          total: '合计',
+          totalOrder: '发货数量:',
+          totalArea: '发货面积:' ,
+          sendAmount: '发货金额:',
+          totalAmount: '总金额:'
+        }]
+      }
+    },
+    created() {
+      this.dataNameList.push({id:0,name:'日期',state:'name'})
+      let arr=[]
+      for(var i=1;i<31;i++){
+        //表头
+        let obj={
+          id:i,
+          name:String(i),
+          state:'name'+i
+        }
+        this.dataNameList.push(obj)
+        //值
+        let obj1=`{name${i}:${i*10}}`
+        let objA=eval("("+obj1+")")
+        arr.push(objA)
+      }
+      let newObj={}
+      arr.push({name:'基础客户数'})
+      for(var i=0;i<arr.length;i++){
+        newObj = { ...newObj, ...arr[i] }
+      }
+      this.dataNumberList.push(newObj)
+    }
+  })
+</script>
+</html>
+

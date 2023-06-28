@@ -1,0 +1,17 @@
+#数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rjd?serverTimezone=UTC&allowLoadLocalInfile=true
+    username: root
+    password: 123456
+#属性名
+file:
+  readPath: C:/Users/RJD/Documents/Test05.csv
+  setPath: D:/day01/lianxi01/src/Data01.txt
+#mybatis配置
+mybatis:
+  typeAliasesPackage: com.readexcel.pojo
+  mapperLocations: classpath:mapper/*.xml
+  #configLocation: classpath:/mybatis-config.xml
+

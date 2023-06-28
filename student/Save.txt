@@ -1,0 +1,59 @@
+#此文件用于测试备份
+{"address":"xianggang","age":23,"id":"123456","name":"lizhiting"}
+{"address":"shanxi","age":12,"id":"234567","name":"renjiadong"}
+
+#主函数备份
+    List<student> studentList = new ArrayList<>();
+    List<student> studentListBefore = new ArrayList<>();
+    FileInputStream file = new FileInputStream("D:/day01/lianxi02/src/main/java/student/Data.txt");
+    InputStreamReader read = new InputStreamReader(file);
+    BufferedReader bufferedReader = new BufferedReader(read);
+
+    String s = "";
+    while((s = bufferedReader.readLine())!=null){
+      student st = JSON.parseObject(s, student.class);
+      studentListBefore.add(st);
+      studentList = studentListBefore.stream().distinct().collect(Collectors.toList());
+    }
+    bufferedReader.close();
+
+    while(true){
+      System.out.println("--------------------欢迎进入学生管理系统后台界面--------------------");
+      System.out.println("1：添加学生");
+      System.out.println("2：查询学生");
+      System.out.println("3：修改学生");
+      System.out.println("4：删除学生");
+      System.out.println("5：退出");
+      System.out.println("--------------------------------------------------------------");
+      System.out.println("请输入您的选择：");
+      Scanner sc = new Scanner(System.in);
+      choose = sc.next();
+      switch (choose){
+        case "1" :
+          System.out.println("添加的学生信息为："+addStudent(studentList).toString());
+          break;
+        case "2" :
+          selectStudent(studentList);
+          break;
+        case "3" :
+          if (updateStudent(studentList)) {
+            System.out.println("修改成功");
+          }else{
+            System.out.println("修改失败");
+          }
+          break;
+        case "4" :
+          if (deleteStudent(studentList)) {
+            System.out.println("删除成功");
+          }else{
+            System.out.println("删除失败");
+          }
+          break;
+        case "5" :
+          System.out.println("退出");
+          System.out.println("------------------------学生管理系统关闭--------------------------");
+          System.exit(0);
+        default:
+          System.out.println("没有这个选项，请重试！");
+      }
+    }

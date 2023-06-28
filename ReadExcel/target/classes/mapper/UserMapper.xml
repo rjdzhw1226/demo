@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.readexcel.Dao.mapper.UserMapper" >
+  <resultMap id ="UserInfoMap" type="com.readexcel.pojo.User">
+    <result column="name" property="name"/>
+    <result column="work_number" property="workerNumber"/>
+    <result column="bsp_user_number" property="bspUserNumber"/>
+    <result column="mobile" property="mobile"/>
+  </resultMap>
+
+  <insert id="load_file">
+    LOAD DATA LOCAL INFILE #{path,jdbcType=VARCHAR} INTO TABLE tb_user_test CHARACTER SET utf8
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\n'
+  </insert>
+</mapper>
