@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="view yewuzhaodai_shenqing">
+  <div class="weui-hd" style="position:relative;z-index:2">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:;" class="link">
+            <i class="iconfont icon-fanhui"></i>
+          </a>
+        </div>
+        <div class="center">业务招待申请</div>
+        <div class="right">
+          <a href="javascript:;" class="click_home"><i class="iconfont icon-home">
+          </i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-bd page home">
+    <div class="weui-cells weui-cells_form">
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label id="_yhm" class="weui-label">用户名称</label>
+        </div>
+        <div class="weui-cell__bd selContent_pos">
+          <input class="weui-input userInfo" type="text" placeholder="请输入…" v-model="content"
+                 v-attr="data-id:userId,data-level:user_type" v-on="input:contentRemeber(this, e)">
+          <br><span class="weui-input userInfoa" v-model="content1" v-attr="data-level:user_type" style="display:none">
+  </span>
+          <div class="selContent">
+            <p v-repeat="selContent" v-text="user_name" v-attr="data-id:user_id"
+               v-on="click:checkRemeber(this, e, average_fee, user_type)"></p></div>
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label class="weui-label">用餐时间</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" disabled name="getDate" id="getDate" v-attr="value:today">
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label class="weui-label">用餐城市</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input readonly id="cascadePickerBtn" class="weui-input" type="text" value="上海 上海市"
+                 placeholder="请输入…">
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label class="weui-label">用餐饭店</label></div>
+        <div class="weui-cell__bd">
+          <input class="weui-input dinnerPlace" style="color:#888!important" type="text" value="客服中心201餐厅"
+                 v-on="focus:colorchange(type_value)" placeholder="请输入…">
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label class="weui-label">招待人数(客户)</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input receive_number" type="text" placeholder="请输入（茶叶零星申请可不填）…">
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">陪同人数(宝钢)</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input accompanying_number" type="text" placeholder="请输入（茶叶零星申请可不填）…">
+        </div>
+      </div>
+      <div class="weui-panel__hd">招待类型
+        <span class="fy" style="font-size:12px;color:#353535">人均费用:(<span v-text="rjfy_v"></span>)</span>
+      </div>
+      <form class="weui-check__label zdlx">
+        <label class="weui-cell" v-repeat="zhaodaileixing" v-on="click:showrj(type_value)"
+               v-attr="data-level:node_level,data-key:type_key"
+               v-class="weui-qita:type_value|isOther '其它',weui-gongzuocan:type_value|isOther '工作餐',weui-gongzuocan-tongcheng:type_value|isOther '同城各单位之间的活动'">
+          <div class="weui-cell__bd">
+            <div class="weui-cells_checkbox">
+              <div class="weui-cell__hd">
+                <input type="radio" class="weui-check" name="checkbox1" v-attr="data-key:type_key,data-val:type_value">
+                <i class="weui-icon-checked"></i>
+              </div>
+            </div>
+            <p>
+              <span v-text="type_value"></span>
+            </p>
+          </div>
+        </label>
+      </form>
+      <div class="clearfix">
+
+      </div>
+      <div class="weui-panel__hd _xqdsb">接待事由</div>
+      <form class="weui-check__label jdsy _xqdsb">
+        <label class="weui-cell" v-repeat="jiedaishiyou" v-attr="data-level:node_level,data-key:type_key"
+               v-class="weui-qita:type_value|isOther '其它'">
+          <div class="weui-cell__bd">
+            <div class="weui-cells_checkbox">
+              <div class="weui-cell__hd">
+                <input v-on="click:showinpu(type_value)" type="radio" class="weui-check" name="checkbox1"
+                       v-attr="data-key:type_key,data-val:type_value"> <i class="weui-icon-checked"></i></div>
+            </div>
+            <p v-text="type_value">商务谈判</p></div>
+        </label></form>
+      <div class="clearfix"></div>
+      <div class="weui-cell weui-qitain" id="chaye1">
+        <div class="weui-cell__hd"><label class="weui-label">预估斤数</label></div>
+        <div class="weui-cell__bd">
+          <input id="jinshu" class="weui-input jinshu" type="text" v-on="input:showmoney(e)" placeholder="请输入…">
+        </div>
+      </div>
+      <div class="weui-cell weui-qitain" id="qita_">
+        <div class="weui-cell__hd"><label class="weui-label">加班人</label></div>
+        <div class="weui-cell__bd"><input class="weui-input zdlxqt" type="text" placeholder="请输入…"></div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <style>.zhaodaiW {width: 210px !important}</style>
+          <label class="weui-label zhaodaiShow">预估金额 <span style="display:none">(不得安排酒类饮品)</span></label>
+        </div>
+        <div class="weui-cell__bd"><input class="weui-input yg_fee" v-on="input:showPeople(e)" type="text"
+                                          placeholder="请输入…"></div>
+      </div>
+      <div class="weui-panel__hd deptShow">选择部门总监 <input style="display:none" class="dataType"></div>
+      <form class="weui-check__label bmshr deptShow"><label class="weui-cell" style="width:50%"
+                                                            v-repeat="bumenshenheren" v-attr="data-dept:user_id"
+                                                            v-class="weui-qita:user_name|isOther '其它',weui-gongzuocan:user_id|isOther '工作餐'">
+        <div class="weui-cell__bd">
+          <div class="weui-cells_checkbox">
+            <div class="weui-cell__hd"><input type="radio" class="weui-check" name="checkbox1"
+                                              v-attr="data-key:user_id,checked:$up.bumenshenheren|isLength"> <i
+              class="weui-icon-checked"></i></div>
+          </div>
+          <p><span v-text="user_name"></span></p></div>
+      </label></form>
+      <div class="clearfix"></div>
+      <div class="weui-panel__hd">选择部门审核人</div>
+      <form class="weui-check__label weui-check__label-t bmzj"><label class="weui-cell leefc_1"
+                                                                      style="width:50%;display:none"
+                                                                      v-repeat="bumenshenhezongjian"
+                                                                      v-attr="data-dept:user_id,level:approver_authority"
+                                                                      v-class="weui-qita:user_name|isOther '其它',weui-gongzuocan:user_id|isOther '工作餐'">
+        <div class="weui-cell__bd">
+          <div class="weui-cells_checkbox">
+            <div class="weui-cell__hd"><input type="radio" class="weui-check" name="checkbox1x"
+                                              v-attr="data-key:user_id,checked:$up.bumenshenhezongjian|isLength,level:approver_authority">
+              <i class="weui-icon-checked"></i></div>
+          </div>
+          <p><span v-text="user_name"></span></p></div>
+      </label></form>
+    </div>
+  </div>
+  <div class="weui-tabbar">
+    <div class="shenhe-btn"><a href="javascript:void(0);" v-on="click:submit(0)" class="shenhe-btn_left">保存</a> <a
+      href="javascript:void(0);" v-on="click:submit(1)" class="shenhe-btn_right">提交</a></div>
+  </div>
+  <div class="weui-work_meal">
+    <div class="weui-work_mol">
+      <div class="weui-work_title">工作餐签单选择</div>
+      <div class="weui-work_check qiandan"><label v-on="click:showrj(type_value)" class="weui-cell" v-repeat="qiandan"
+                                                  v-attr="data-level:node_level,data-key:type_key">
+        <div class="weui-cell__bd"><p><span v-show="type_value|notMoney">餐标</span> <span v-text="type_value"></span>
+        </p></div>
+        <div class="weui-cell__ft">
+          <div class="weui-cells_checkbox">
+            <div class="weui-cell__hd"><input type="radio" class="weui-check" name="checkbox1" v-value="type_value"
+                                              v-attr="data-key:type_key"> <i class="weui-icon-checked"></i></div>
+          </div>
+        </div>
+      </label></div>
+      <div class="weui-btn-area"><a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
+      </div>
+    </div>
+    <div class="weui-work_bg">
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
