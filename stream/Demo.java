@@ -1,6 +1,4 @@
-package com.stream;
-
-import org.hibernate.mapping.Array;
+package stream;
 
 import java.util.List;
 

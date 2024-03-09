@@ -1,4 +1,4 @@
-package com.stream;
+package stream;
 
 import java.lang.reflect.Array;
 import java.util.*;

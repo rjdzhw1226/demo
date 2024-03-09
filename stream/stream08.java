@@ -1,6 +1,5 @@
-package com.stream;
+package stream;
 
-import com.util.OutUtil;
 
 import java.util.Arrays;
 
@@ -23,7 +22,7 @@ public class stream08 {
       for (int j = 0; j < n; j++) {
         arrayCount++;
         if(array[i][j]=='Q'){
-          OutUtil.print(array[i][j]);
+          //OutUtil.print(array[i][j]);
           System.out.print("  ");
         }else{
           System.out.print(array[i][j]);

@@ -1,6 +1,4 @@
-package com.stream;
-
-import com.util.OutUtil;
+package stream;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -32,7 +30,7 @@ public class stream10 {
             }
             if(play[i][j]==1){
               chars[i][j]='Q';
-              OutUtil.print(chars[i][j]+"  ");
+              //OutUtil.print(chars[i][j]+"  ");
             }else {
               chars[i][j]='K';
               System.out.print(chars[i][j]+"  ");

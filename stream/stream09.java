@@ -1,7 +1,7 @@
-package com.stream;
+package stream;
 
 import com.sun.xml.internal.fastinfoset.util.CharArray;
-import com.util.OutUtil;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +59,7 @@ public class stream09 {
                 charResult[i][j] = 'Q';
               }
               if(charResult[i][j] == 'Q'){
-                OutUtil.print(charResult[i][j]+"  ");
+                //OutUtil.print(charResult[i][j]+"  ");
               }else {
                 System.out.print(charResult[i][j]+"  ");
               }

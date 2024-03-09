@@ -1,8 +1,8 @@
-package com.add;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -231,6 +231,7 @@ public class TestList01 {
     findStr(haystack, needle, index, list);
   }
 
+  List<List<String>> res = new ArrayList<>();
   //全排列
   private List<List<String>> extracted(String[] words, List<String> list) {
     List<String> temp = new ArrayList<>(list);
