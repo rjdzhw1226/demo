@@ -1,0 +1,55 @@
+    for (int i = 0; i < row; i++) {
+      for (int j = 0; j < row - 1 - i; j++) {
+        //检查行
+        for (int k = 0; k < row; k++) {
+          if(k!=j){
+            if(j == k){
+              return 0;
+            }
+          }
+        }
+        //检查列
+        for (int k = 0; k < row; k++) {
+          if(k!=i){
+            if(i == k){
+              return 0;
+            }
+          }
+        }
+        //检查对角线
+        for (int k = 0; k < row; k++) {
+          for (int l = 0; l < row - 1 -k; l++) {
+            if(k!=i || l!=j){
+              if(Math.abs(i-k) == Math.abs(j-l) ){
+                return 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    while (true){
+      int v = (int) (Math.random() * 8);
+      if (count%8 == 0) {
+        System.out.println();
+      }
+      System.out.print(v+" ");
+      count++;
+    }
+
+    public void FindNQueen(int k, int l, int r){
+
+        if(k == nn){
+
+          count++;
+          return;
+        }
+        int z = nn & (~(k | l | r));  //能走的位置， 和nn取并可以去掉前面多余的1
+        while(z != 0){
+
+          int index = z & (~z+1);   //最右边的一个1， 即要放皇后的位置。
+          z -= index;   //去掉这个位置。
+          FindNQueen(k | index, (l|index)<<1, (r|index)>>1);   //查找下一个。
+        }
+      }

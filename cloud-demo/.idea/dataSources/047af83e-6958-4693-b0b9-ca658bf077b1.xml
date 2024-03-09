@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="cloud_user@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.43">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.48">
     <root id="1"/>
     <schema id="2" parent="1" name="baosight_member"/>
     <schema id="3" parent="1" name="cloud_order"/>
@@ -22,18 +22,18 @@
     </table>
     <column id="15" parent="14" name="id">
       <AutoIncrement>109</AutoIncrement>
-      <DataType>bigint|0s</DataType>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="16" parent="14" name="username">
       <Comment>收件人</Comment>
-      <DataType>varchar(100)|0s</DataType>
+      <DasType>varchar(100)|0s</DasType>
       <Position>2</Position>
     </column>
     <column id="17" parent="14" name="address">
       <Comment>地址</Comment>
-      <DataType>varchar(255)|0s</DataType>
+      <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
     <index id="18" parent="14" name="PRIMARY">
